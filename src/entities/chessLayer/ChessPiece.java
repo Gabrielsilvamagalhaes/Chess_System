@@ -2,18 +2,17 @@ package entities.chessLayer;
 
 import entities.boardLayer.Board;
 import entities.boardLayer.Piece;
+import entities.chessLayer.enums.Color;
 
 public abstract class ChessPiece extends Piece {
     private Color color;
-    private int moveCount;
 
     public ChessPiece(){
         super();
     }
-    public ChessPiece(Board board, Color color, int moveCount){
+    public ChessPiece(Board board, Color color){
         super(board);
         this.color = color;
-        this.moveCount = moveCount;
     }
     
     

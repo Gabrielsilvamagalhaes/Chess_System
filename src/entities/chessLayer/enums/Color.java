@@ -1,4 +1,4 @@
-package entities.chessLayer;
+package entities.chessLayer.enums;
 
 public enum Color {
     BLACK,

@@ -16,6 +16,9 @@ public class Position {
     
     
 
+    public String toString(){
+        return row+", "+ column;
+    }
     /**
      * @return int return the row
      */
@@ -32,9 +35,6 @@ public class Position {
         return column;
     }
 
-    public String toString(){
-        return row+", "+ column;
-    }
 
    
 
