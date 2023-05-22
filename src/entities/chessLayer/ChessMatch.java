@@ -1,6 +1,8 @@
 package entities.chessLayer;
 
 import entities.boardLayer.Board;
+import entities.boardLayer.Piece;
+import entities.boardLayer.Position;
 import entities.chessLayer.PiecesOfChess.Bishop;
 import entities.chessLayer.PiecesOfChess.King;
 import entities.chessLayer.PiecesOfChess.Knight;
@@ -8,6 +10,7 @@ import entities.chessLayer.PiecesOfChess.Pawn;
 import entities.chessLayer.PiecesOfChess.Queen;
 import entities.chessLayer.PiecesOfChess.Rook;
 import entities.chessLayer.enums.Color;
+import exceptions.ChessException;
 
 public class ChessMatch {
     private int turn;
@@ -81,6 +84,30 @@ public class ChessMatch {
         placeNewPiece(7, 'g', new Pawn(board, Color.BLACK));
         placeNewPiece(7, 'h', new Pawn(board, Color.BLACK));
         
+    }
+
+    public ChessPiece performChessMove(ChessPosition sourcePosition, ChessPosition targetPosition){
+        Position source = sourcePosition.toPosition();
+        Position target = targetPosition.toPosition();
+        validateSourcePosition(source);
+        Piece capturedPiece = makeMouve(source, target);
+        return (ChessPiece) capturedPiece;
+
+        
+    }
+
+    private void validateSourcePosition(Position position){
+        if(!board.thereIsAPiece(position)){
+            throw new ChessException("ERROR OF SOURCE POSITION: there is no piece on position");
+
+        }
+
+    }
+    private Piece makeMouve(Position source, Position target){
+        Piece p = board.removePiece(source);
+        Piece capturedPiece =board.removePiece(target);
+        board.placePiece(p, target);
+        return capturedPiece;
     }
 
 }

@@ -36,29 +36,24 @@ public class Board {
         }
         return pieces[position.getRow()][position.getColumn()];
     }
-
-    public void removePiece(Position position) {
-
-        Piece[][] newPieces = new Piece[pieces.length - 1][pieces[0].length - 1];
-
-        int newRow = 0;
-        for (int i = 0; i < pieces.length; i++) {
-            if (i == position.getRow()) {
-                continue;
-            }
-
-            int newColumn = 0;
-            for (int j = 0; j < pieces[0].length; j++) {
-                if (j == position.getColumn()) {
-                    continue;
-                }
-
-                newPieces[newRow][newColumn] = pieces[i][j];
-                newColumn++;
-            }
-
-            newRow++;
+    
+    public Piece removePiece(Position position) {
+        if(!positionExsits(position)){
+            throw new BoardException("ERROR ACCESSING THE PIECE: the wrong column or row!");
         }
+
+        if(piece(position)==null){
+            return null;
+        }else{
+            Piece temp = piece(position);
+            temp.position =null;
+            pieces[position.getRow()][position.getColumn()] = null;
+            return temp;
+
+        }
+
+        
+        
 
     }
     
