@@ -30,6 +30,14 @@ public class UI {
     public static final String ANSI_CYAN_BACKGROUND = "\u001B[46m";
     public static final String ANSI_WHITE_BACKGROUND = "\u001B[47m";
 
+    // https://stackoverflow.com/questions/2979383/java-clear-the-console
+    //Metodo para limpar a tela no console
+    public static void clearScreen() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+    }
+
+    // Metodo para ler a posicao da classe Program
     public static ChessPosition readChessPosition(Scanner sc) {
         try {
 
@@ -38,7 +46,8 @@ public class UI {
             int row = Character.getNumericValue(x.charAt(1));
             return new ChessPosition(row, column);
         } catch (RuntimeException e) {
-            throw new InputMismatchException("ERROR READING CHESS POSITION: Valid position from \"a\" to \"h\" and \"1\" to \"8\"");
+            throw new InputMismatchException(
+                    "ERROR READING CHESS POSITION: Valid position from \"a\" to \"h\" and \"1\" to \"8\"");
         }
 
     }

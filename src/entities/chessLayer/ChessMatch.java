@@ -95,14 +95,15 @@ public class ChessMatch {
 
         
     }
-
+    //Metodo que valida a posicao da peca que deseja mover, caso de erro, gera execao
     private void validateSourcePosition(Position position){
         if(!board.thereIsAPiece(position)){
-            throw new ChessException("ERROR OF SOURCE POSITION: there is no piece on position");
+            throw new ChessException( "There is no piece on position");
 
         }
 
     }
+    //Metodo que move a peca para o local designado e remove a peca do local de origem
     private Piece makeMouve(Position source, Position target){
         Piece p = board.removePiece(source);
         Piece capturedPiece =board.removePiece(target);
