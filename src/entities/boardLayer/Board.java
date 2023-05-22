@@ -21,6 +21,7 @@ public class Board {
         pieces = new Piece[rows][columns];
     }
 
+    //Metodo para acessar as pecas a partir das linhas e colunas
     public Piece piece(int row, int column) {
         if (!positionExsits(row, column)) {
             throw new BoardException("ERROR ACCESSING THE PIECE: the wrong column or row!");
@@ -28,6 +29,7 @@ public class Board {
         return pieces[row][column];
     }
     
+    //Metodo para acessar as pecas a partir da posicao
     public Piece piece(Position position) {
         if (!positionExsits(position)) {
             throw new BoardException("ERROR ACCESSING THE PIECE: the wrong column or row!");
@@ -59,7 +61,8 @@ public class Board {
         }
 
     }
-
+    
+    //Metodo para alocar a peca em tal posicao
     public void placePiece(Piece piece, Position position) {
         if(thereIsAPiece(position)){
             throw new BoardException("ERROR ACCESSING THE PIECE: the position already exists!");
@@ -69,16 +72,20 @@ public class Board {
         piece.position = position;
 
     }
+    
 
+    //Metodo para saber se a posicao existi a partir de linhas e colunas
     private boolean positionExsits(int row, int column) {
         return column >= 0 && row >= 0 && column < 8 && row < 8;
-
+        
     }
-
+    
+    //Metodo para saber se a posicao existi a partir da posicao
     public boolean positionExsits(Position position) {
         return positionExsits(position.getRow(), position.getColumn());
     }
 
+    //Metoo para saber se ja ha uma peca nessa posicao
     public boolean thereIsAPiece(Position position) {
         if(!positionExsits(position)){
             throw new BoardException("ERROR ACCESSING THE PIECE: the wrong column or row!");
