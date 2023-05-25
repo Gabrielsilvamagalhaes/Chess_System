@@ -90,6 +90,7 @@ public class ChessMatch {
         Position source = sourcePosition.toPosition();
         Position target = targetPosition.toPosition();
         validateSourcePosition(source);
+        validateTargetPosition(source, target);
         Piece capturedPiece = makeMouve(source, target);
         return (ChessPiece) capturedPiece;
 
@@ -106,6 +107,12 @@ public class ChessMatch {
         }
 
     }
+    private void validateTargetPosition(Position sourcePosition, Position targetPosition){
+        if(!board.piece(sourcePosition).possibleMove(targetPosition)){
+            throw new ChessException("The chosen piece can´t move to target position!");
+        }
+    }
+
     //Metodo que move a peca para o local designado e remove a peca do local de origem
     private Piece makeMouve(Position source, Position target){
         Piece p = board.removePiece(source);
