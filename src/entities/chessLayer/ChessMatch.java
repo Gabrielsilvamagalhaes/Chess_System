@@ -101,6 +101,9 @@ public class ChessMatch {
             throw new ChessException( "There is no piece on position");
 
         }
+        if(!board.piece(position).isThereAnyPossibleMove()){
+            throw new ChessException("There is no possible moves for the chosen piece! ");
+        }
 
     }
     //Metodo que move a peca para o local designado e remove a peca do local de origem

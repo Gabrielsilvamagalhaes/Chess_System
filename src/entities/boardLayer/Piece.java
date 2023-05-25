@@ -1,6 +1,6 @@
 package entities.boardLayer;
 
-public class Piece {
+public abstract class Piece {
     protected Position position;
     private Board board;
 
@@ -13,9 +13,27 @@ public class Piece {
     }
 
     
+    public abstract boolean[][] possibleMoves();
+
+
     public boolean possibleMove(Position position){
-      return true;
+        return possibleMoves()[position.getRow()][position.getColumn()];
+
     }
+
+    public boolean isThereAnyPossibleMove(){
+        boolean[][] promt = possibleMoves();
+        for(int i =0;i<promt.length; i++){
+            for(int j =0; j<promt.length; j++){
+                if(promt[i][j]){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+     
+    
 
 
     
