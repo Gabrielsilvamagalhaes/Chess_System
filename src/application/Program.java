@@ -3,44 +3,48 @@ package application;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import entities.chessLayer.ChessMatch;
-import entities.chessLayer.ChessPiece;
-import entities.chessLayer.ChessPosition;
-import exceptions.ChessException;
+import chess.ChessException;
+import chess.ChessMatch;
+import chess.ChessPiece;
+import chess.ChessPosition;
 
 public class Program {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        ChessMatch match = new ChessMatch();
 
-        while (true) {
-            try {
-                UI.clearScreen();
+	public static void main(String[] args) {
+		
+		Scanner sc = new Scanner(System.in);
+		ChessMatch chessMatch = new ChessMatch();
+		
+		while (true) {
+			try {
+				//Chamada do metodo para limpar a tela 
+				UI.clearScreen();
+				//Chamada do metodo para imprimir as pecas
+				UI.printBoard(chessMatch.getPieces());
+				System.out.println();
+				System.out.print("Source: ");
+				ChessPosition source = UI.readChessPosition(sc);
+				
+				boolean[][] possibleMoves = chessMatch.possibleMoves(source);
+				UI.clearScreen();
 
-                // Inicializando do tabuleiro
-                UI.printBoard(match.getPieces());
-
-                System.out.println();
-                System.out.print("Source: ");
-                // Leitura da posicao de origem da peca
-                ChessPosition source = UI.readChessPosition(sc);
-                System.out.println();
-
-                System.out.print("Target: ");
-                // Leitura da posicao que deseja mover a peca
-                ChessPosition target = UI.readChessPosition(sc);
-                ChessPiece capturedPiece = match.performChessMove(source, target);
-            } 
-            catch (ChessException e) {
-                System.out.println(e.getMessage());
-                sc.next().charAt(0);
-                
-            } 
-            catch (InputMismatchException e) {
-                System.out.println(e.getMessage());
-                sc.next();
-            }
-        }
-    }
-
+				//Chamada do metodo para imprimir as pecas e os possiveis movimentos da peca escolhida
+				UI.printBoard(chessMatch.getPieces(), possibleMoves);
+				System.out.println();
+				
+				System.out.print("Target: ");
+				ChessPosition target = UI.readChessPosition(sc);
+				
+				ChessPiece capturedPiece = chessMatch.performChessMove(source, target);
+			}
+			catch (ChessException e) {
+				System.out.println(e.getMessage());
+				sc.nextLine();
+			}
+			catch (InputMismatchException e) {
+				System.out.println(e.getMessage());
+				sc.nextLine();
+			}
+		}
+	}
 }
