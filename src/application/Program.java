@@ -20,7 +20,7 @@ public class Program {
 				//Chamada do metodo para limpar a tela 
 				UI.clearScreen();
 				//Chamada do metodo para imprimir as pecas
-				UI.printBoard(chessMatch.getPieces());
+				UI.printMatch(chessMatch);
 				System.out.println();
 				System.out.print("Source: ");
 				ChessPosition source = UI.readChessPosition(sc);

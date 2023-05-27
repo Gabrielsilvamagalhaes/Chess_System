@@ -16,6 +16,7 @@ public class King extends ChessPiece {
 		return "K";
 	}
 
+	//Metodo que verifica se e possivel mover a peca para tal posicao
 	private boolean canMove(Position position) {
 		ChessPiece p = (ChessPiece) getBoard().piece(position);
 
@@ -75,11 +76,6 @@ public class King extends ChessPiece {
 		if(getBoard().positionExists(p) && canMove(p))	{
 			mat[p.getRow()][p.getColumn()] = true;
 		}
-
-
-
-
-
 
 		return mat;
 	}
