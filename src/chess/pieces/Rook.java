@@ -21,6 +21,8 @@ public class Rook extends ChessPiece {
 		boolean[][] mat = new boolean[getBoard().getRows()][getBoard().getColumns()];
 		
 		Position p = new Position(0, 0);
+
+		p.setValues(position.getRow(), position.getColumn());
 		
 		//Movendo para cima
 		p.setValues(position.getRow() - 1, position.getColumn());
